@@ -23,7 +23,7 @@ body {
     text-align: center;
     font-family: 'Pacifico', cursive;
     font-size: 2em;
-    color: #ffcc00;
+    color: #000000;
     margin-bottom: 20px;
 }
 .form-group {
@@ -201,3 +201,10 @@ button:hover {
         padding: 20px;
     }
 }
+
+.anton-sc-regular {
+    font-family: "Anton SC", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
