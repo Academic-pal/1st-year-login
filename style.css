@@ -19,9 +19,17 @@ body {
     max-width: 400px;
     width: 100%;
 }
+
+
+.cinzel-unique {
+  font-family: "Cinzel", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
 .logo {
     text-align: center;
-    font-family: 'Pacifico', cursive;
+  
     font-size: 2em;
     color: #000000;
     margin-bottom: 20px;
