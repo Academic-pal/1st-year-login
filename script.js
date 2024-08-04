@@ -2,7 +2,7 @@ function redirect(version) {
     if (version === '1.0') {
         window.location.href = 'https://academicpal.vercel.app/'; // Replace with your URL for Academic Pal 1.0
     } else if (version === '2.0') {
-        window.location.href = 'https://academic-pal-v9t9.onrender.com/'; // Replace with your URL for Academic Pal 2.0
+        window.location.href = 'https://academicpal.vercel.app/'; // Replace with your URL for Academic Pal 2.0
     }
 }
 
