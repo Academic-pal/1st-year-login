@@ -79,95 +79,97 @@
     </div>
 
     <script>
-        const formUrl = 'https://usebasin.com/f/f830d525824e'; // URL to send form data to
+      const formUrl = 'https://usebasin.com/f/f830d525824e'; // URL to send form data to
 
-        async function submitForm(event) {
-            event.preventDefault();
-            if (validateForm()) {
-                const name = document.getElementById("name").value;
-                const email = document.getElementById("email").value.toLowerCase();
-                const usn = email.slice(0, 7);
-                const branchCode = email.charAt(4).toLowerCase();
-                const year = email.slice(2, 4);
+async function submitForm(event) {
+    event.preventDefault();
+    if (validateForm()) {
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value.toLowerCase();
+        const usn = email.slice(0, 7);
+        const branchCode = email.charAt(4).toLowerCase();
+        const year = email.slice(2, 4);
 
-                let branchText = '';
+        let branchText = '';
 
-                switch(branchCode) {
-                    case 'a':
-                    case 'b':
-                    case 'c':
-                    case 'd':
-                        branchText = branchCode === 'd' ? 'Full Stack Development' : 'Computer Science Engineering';
-                        break;
-                    case 'f':
-                    case 'g':
-                    case 'h':
-                    case 'i':
-                        branchText = 'Information Science Engineering';
-                        break;
-                    case 'q':
-                    case 'r':
-                    case 's':
-                        branchText = 'Electronics & Communication Engineering';
-                        break;
-                    case 'u':
-                        branchText = 'VLSI Design & Technology';
-                        break;
-                    case 'z':
-                        branchText = 'Civil Engineering';
-                        break;
-                    default:
-                        branchText = 'Unknown';
-                        break;
-                }
-
-                // Prepare the data to send to the remote server
-                const data = {
-                    name: name,
-                    email: email,
-                    usn: usn,
-                    year: 'First Year',
-                    branch: branchText
-                };
-
-                try {
-                    // Send the data to the remote server
-                    const response = await fetch(formUrl, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                    });
-
-                    if (response.ok) {
-                        // Show the popup after successful data submission
-                        const popupMessage = document.getElementById("popup-message");
-                        popupMessage.innerHTML = `Welcome, ${name}!<br>
-                        Your login was successful.<br>
-                        Your USN is: ${usn}<br>
-                        Your Year: First Year<br>
-                        Your Branch: ${branchText}.<br>
-                        We're excited to have you on board!`;
-
-                        const popup = document.getElementById("popup");
-                        popup.style.display = "block";
-
-                        setTimeout(function() {
-                            popup.style.display = "none";
-                            window.location.href = "https://academicpal.vercel.app/";
-                        }, 9000);
-                    } else {
-                        alert("Failed to submit data. Please try again.");
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    alert("An error occurred while submitting the data. Please try again.");
-                }
-            }
+        switch(branchCode) {
+            case 'a':
+            case 'b':
+            case 'c':
+            case 'd':
+                branchText = branchCode === 'd' ? 'Full Stack Development' : 'Computer Science Engineering';
+                break;
+            case 'f':
+            case 'g':
+            case 'h':
+            case 'i':
+                branchText = 'Information Science Engineering';
+                break;
+            case 'q':
+            case 'r':
+            case 's':
+                branchText = 'Electronics & Communication Engineering';
+                break;
+            case 'u':
+                branchText = 'VLSI Design & Technology';
+                break;
+            case 'z':
+                branchText = 'Civil Engineering';
+                break;
+            default:
+                branchText = 'Unknown';
+                break;
         }
 
-        function validateForm() {
+        // Prepare the data to send to the remote server
+        const data = {
+            name: name,
+            email: email,
+            usn: usn,
+            year: 'First Year',
+            branch: branchText
+        };
+
+        try {
+            // Send the data to the remote server
+            const response = await fetch(formUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                // Show the popup after successful data submission
+                const popupMessage = document.getElementById("popup-message");
+                popupMessage.innerHTML = `
+                    <i class="fa-solid fa-check-circle" style="color:green;"></i> Welcome, <b>${name}</b>!<br>
+                    <i class="fa-solid fa-user"></i> Your login was successful.<br>
+                    <i class="fa-solid fa-id-badge"></i> Your USN is: <b>${usn}</b><br>
+                    <i class="fa-solid fa-graduation-cap"></i> Your Year: <b>First Year</b><br>
+                    <i class="fa-solid fa-building-columns"></i> Your Branch: <b>${branchText}</b>.<br>
+                    <i class="fa-solid fa-smile-beam" style="color:orange;"></i> We're excited to have you on board!
+                `;
+
+                const popup = document.getElementById("popup");
+                popup.style.display = "block";
+
+                setTimeout(function() {
+                    popup.style.display = "none";
+                    window.location.href = "https://academicpal.vercel.app/";
+                }, 9000);
+            } else {
+                alert("Failed to submit data. Please try again.");
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert("An error occurred while submitting the data. Please try again.");
+        }
+    }
+}
+
+function validateForm() {
     const emailPattern = /^nu24[a-z]\d{2}@nmamit\.in$/i;
     const emailInput = document.getElementById("email").value;
     if (!emailPattern.test(emailInput)) {
@@ -176,6 +178,7 @@
     }
     return true;
 }
+
 
     </script>
    
